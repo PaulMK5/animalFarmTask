@@ -32,7 +32,7 @@ class Animal {
     for (let i = 0; i <= quantity; i++) {
       const Type = this.constructor;
       this.children.push(new Type(`${i + 1} child of a ${this.name}`));
-      if (nestedLvl > 1) {
+      if (nestedLvl > 0) {
         this.children[i].createChildren(getRndInt(1, 3), --nestedLvl);
       }
     }
@@ -86,10 +86,8 @@ console.log(farm);
 
 function countChildren(animalArray, sum = 0) {
   for (let i = 0; i < animalArray.length; i++) {
-    if (animalArray[i].children.length > 0) {
-      sum += animalArray[i].children.length;
-      countChildren(animalArray[i].children);
-    }
+    sum += animalArray[i].children.length;
+    countChildren(animalArray[i].children);
   }
   return sum;
 }
